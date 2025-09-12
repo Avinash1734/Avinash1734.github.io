@@ -1,66 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Avinash Gupta | Portfolio</title>
   <style>
+    :root{
+      /* change this to nudge the left text width/align as you like */
+      --sidebar-content-width: 210px;
+    }
+
     body { font-family: Arial, sans-serif; margin:0; padding:0; color:#333; display:flex; }
-    header {
+
+    /* Top nav (right aligned) */
+    header{
       position:fixed; top:0; left:0; right:0;
       background:#fff; padding:20px 40px; border-bottom:1px solid #eee;
-      display:flex; justify-content:flex-end; align-items:center; /* move nav to right */
+      display:flex; justify-content:flex-end; align-items:center;
       z-index:1000;
     }
-    nav a { margin:0 10px; text-decoration:none; color:#666; font-weight:500; }
-    nav a:hover { color:#0077b5; }
+    nav a{ margin:0 10px; text-decoration:none; color:#666; font-weight:500; }
+    nav a:hover{ color:#0077b5; }
 
-    .sidebar {
-      position:fixed; top:70px; left:0; bottom:0; 
-      width:250px; padding:20px; 
-      border-right:1px solid #eee; background:#fff;
-      text-align:center;
+    /* Sidebar fixed on extreme left */
+    .sidebar{
+      position:fixed; top:70px; left:0; bottom:0;
+      width:250px; padding:20px; border-right:1px solid #eee; background:#fff;
+      display:flex; flex-direction:column; align-items:center; /* center image & name */
     }
-    .sidebar img {
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
-      object-fit: cover;
-      object-position: top;
+    .sidebar img{
+      width:150px; height:150px; border-radius:50%;
+      object-fit:cover; object-position:top; margin-bottom:12px;
     }
-    .sidebar h2 { margin:10px 0 5px; font-size:20px; }
-    .sidebar p { margin:5px 0; color:#555; }
-    .links { text-align:left; margin-top:15px; } /* align links to left */
-    .links a { display:block; margin:8px 0; text-decoration:none; color:#444; }
-    .links a:hover { color:#0077b5; }
+    .sidebar h2{ margin:10px 0 6px; font-size:22px; text-align:center; }
 
-    .main-content {
-      margin-left:270px; /* keeps space for sidebar */
-      padding:100px 40px 40px 40px;
-      max-width:900px;
+    /* Left-align these two blocks with the same width so edges line up */
+    .details, .links{
+      width:var(--sidebar-content-width);
+      text-align:left;
     }
-    .main-content p { margin-bottom:15px; line-height:1.6; font-size:16px; }
-    .highlight { font-weight:bold; color:#0077b5; }
+    .details p{ margin:5px 0; color:#555; }
+    .links{ margin-top:12px; }
+    .links a{ display:block; margin:8px 0; text-decoration:none; color:#444; }
+    .links a:hover{ color:#0077b5; }
+
+    /* Main content */
+    .main-content{
+      margin-left:270px; /* space for sidebar */
+      padding:100px 40px 40px 40px; max-width:900px;
+    }
+    .main-content p{ margin-bottom:15px; line-height:1.6; font-size:16px; }
+    .highlight{ font-weight:bold; color:#0077b5; }
 
     /* Projects */
-    #projects { margin-top:40px; }
-    #projects h2 { font-size:26px; margin-bottom:20px; }
-    .project-grid {
-      display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:20px;
-    }
-    .project-card {
-      border:1px solid #ddd; border-radius:8px; padding:20px; background:#fafafa;
-    }
-    .project-card h3 { margin-top:0; color:#0077b5; }
+    #projects{ margin-top:40px; }
+    #projects h2{ font-size:26px; margin-bottom:20px; }
+    .project-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:20px; }
+    .project-card{ border:1px solid #ddd; border-radius:8px; padding:20px; background:#fafafa; }
+    .project-card h3{ margin-top:0; color:#0077b5; }
   </style>
 </head>
 <body>
   <!-- Sidebar -->
   <aside class="sidebar">
-    <img src="Images/picavi.JPG" alt="Avinash Gupta">
+    <img src="Images/picavi.JPG" alt="Avinash Gupta" />
     <h2>Avinash Gupta</h2>
-    <p>AI Product Developer</p>
-    <p>📍 Navi Mumbai, India</p>
+
+    <!-- role + location (left-aligned block) -->
+    <div class="details">
+      <p><strong>AI Product Developer</strong></p>
+      <p>📍 Navi Mumbai, India</p>
+    </div>
+
+    <!-- links (left-aligned block, same width as details) -->
     <div class="links">
       <a href="mailto:gupta.avinash399@gmail.com">📧 Email</a>
       <a href="https://www.linkedin.com/in/avinash-gupta-4572a615a/">🔗 LinkedIn</a>
@@ -73,7 +85,7 @@
     <header>
       <nav>
         <a href="#projects">Projects</a>
-        <a href="https://avinash0017.blogspot.com/" target="_blank">Blog</a>
+        <a href="https://avinash0017.blogspot.com/" target="_blank" rel="noopener">Blog</a>
         <a href="#contact">Contact</a>
       </nav>
     </header>
@@ -81,9 +93,9 @@
     <section>
       <p>Hi, I’m Avinash 👋</p>
       <p>
-        I specialize in building <span class="highlight">AI-driven solutions</span> that create real-world impact 
-        across <span class="highlight">agriculture</span>, <span class="highlight">disaster management</span>, 
-        and <span class="highlight">education</span>. With a strong foundation in AI & Data Science, I have led 
+        I specialize in building <span class="highlight">AI-driven solutions</span> that create real-world impact
+        across <span class="highlight">agriculture</span>, <span class="highlight">disaster management</span>,
+        and <span class="highlight">education</span>. With a strong foundation in AI & Data Science, I have led
         multiple cross-sector projects at Reliance Foundation.
       </p>
       <p>
@@ -91,17 +103,17 @@
         I enjoy turning complex challenges into simple, impactful solutions.
       </p>
       <p>
-        Outside of work, I’m passionate about cricket (played zonal & district levels) and love exploring 
+        Outside of work, I’m passionate about cricket (played zonal & district levels) and love exploring
         innovation, technology, and how AI can transform lives.
       </p>
       <p>
-        Let’s connect on <a href="https://www.linkedin.com/in/avinash-gupta-4572a615a/">LinkedIn</a> 
+        Let’s connect on <a href="https://www.linkedin.com/in/avinash-gupta-4572a615a/">LinkedIn</a>
         or via <a href="mailto:gupta.avinash399@gmail.com">email</a> to discuss AI, strategy, and social impact!
       </p>
       <p>Thank you for visiting. I’m excited to explore potential collaborations and new opportunities with you!</p>
     </section>
 
-    <!-- Projects Section -->
+    <!-- Projects -->
     <section id="projects">
       <h2>🚀 Featured Projects</h2>
       <div class="project-grid">
@@ -122,6 +134,9 @@
         </div>
       </div>
     </section>
+
+    <!-- Contact anchor target -->
+    <section id="contact"></section>
   </div>
 </body>
 </html>
