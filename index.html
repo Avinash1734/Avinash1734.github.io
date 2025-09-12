@@ -9,10 +9,9 @@
     header {
       position:fixed; top:0; left:0; right:0;
       background:#fff; padding:20px 40px; border-bottom:1px solid #eee;
-      display:flex; justify-content:space-between; align-items:center;
+      display:flex; justify-content:center; align-items:center; /* center nav */
       z-index:1000;
     }
-    header h1 { margin:0; font-size:20px; font-weight:600; }
     nav a { margin:0 10px; text-decoration:none; color:#666; font-weight:500; }
     nav a:hover { color:#0077b5; }
 
@@ -23,13 +22,11 @@
       text-align:center;
     }
     .sidebar img {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  object-fit: cover;
-  object-position: top;  /* focuses on top part of image */
-}
-
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: top;  /* focuses on top part of image */
     }
     .sidebar h2 { margin:10px 0 5px; font-size:20px; }
     .sidebar p { margin:5px 0; color:#555; }
@@ -41,8 +38,7 @@
       padding:100px 40px 40px 40px;
       max-width:900px;
     }
-    .main-content h2 { font-size:24px; margin-top:0; }
-    .main-content p { margin-bottom:15px; line-height:1.6; }
+    .main-content p { margin-bottom:15px; line-height:1.6; font-size:16px; }
     .highlight { font-weight:bold; color:#0077b5; }
 
     /* Projects */
@@ -75,7 +71,7 @@
   <!-- Main Content -->
   <div class="main-content">
     <header>
-      <h1>Avinash Gupta</h1>
+      <!-- Removed h1 Avinash Gupta -->
       <nav>
         <a href="#projects">Projects</a>
         <a href="#blog">Blog</a>
@@ -84,7 +80,7 @@
     </header>
 
     <section>
-      <h2>Hi, I’m Avinash 👋</h2>
+      <p>Hi, I’m Avinash 👋</p>
       <p>
         I specialize in building <span class="highlight">AI-driven solutions</span> that create real-world impact 
         across <span class="highlight">agriculture</span>, <span class="highlight">disaster management</span>, 
@@ -130,5 +126,3 @@
   </div>
 </body>
 </html>
-
-
