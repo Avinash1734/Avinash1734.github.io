@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Avinash Gupta | Portfolio</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin:0; padding:0; color:#333; display:flex; }
+    header {
+      position:fixed; top:0; left:0; right:0;
+      background:#fff; padding:20px 40px; border-bottom:1px solid #eee;
+      display:flex; justify-content:space-between; align-items:center;
+      z-index:1000;
+    }
+    header h1 { margin:0; font-size:20px; font-weight:600; }
+    nav a { margin:0 10px; text-decoration:none; color:#666; font-weight:500; }
+    nav a:hover { color:#0077b5; }
+
+    .sidebar {
+      position:fixed; top:70px; left:0; bottom:0; 
+      width:250px; padding:20px; 
+      border-right:1px solid #eee; background:#fff;
+      text-align:center;
+    }
+    .sidebar img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: top;  /* focuses on top part of image */
+}
+
+    }
+    .sidebar h2 { margin:10px 0 5px; font-size:20px; }
+    .sidebar p { margin:5px 0; color:#555; }
+    .links a { display:block; margin:8px 0; text-decoration:none; color:#444; }
+    .links a:hover { color:#0077b5; }
+
+    .main-content {
+      margin-left:270px; /* keeps space for sidebar */
+      padding:100px 40px 40px 40px;
+      max-width:900px;
+    }
+    .main-content h2 { font-size:24px; margin-top:0; }
+    .main-content p { margin-bottom:15px; line-height:1.6; }
+    .highlight { font-weight:bold; color:#0077b5; }
+
+    /* Projects */
+    #projects { margin-top:40px; }
+    #projects h2 { font-size:26px; margin-bottom:20px; }
+    .project-grid {
+      display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:20px;
+    }
+    .project-card {
+      border:1px solid #ddd; border-radius:8px; padding:20px; background:#fafafa;
+    }
+    .project-card h3 { margin-top:0; color:#0077b5; }
+  </style>
+</head>
+<body>
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <img src="picavi.jpg" alt="Avinash Gupta">
+    <h2>Avinash Gupta</h2>
+    <p>AI Product Developer</p>
+    <p>📍 Navi Mumbai, India</p>
+    <div class="links">
+      <a href="mailto:gupta.avinash399@gmail.com">📧 Email</a>
+      <a href="https://twitter.com/">🐦 Twitter</a>
+      <a href="https://www.linkedin.com/in/avinash-gupta-4572a615a/">🔗 LinkedIn</a>
+      <a href="https://github.com/your-username">💻 GitHub</a>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <header>
+      <h1>Avinash Gupta</h1>
+      <nav>
+        <a href="#projects">Projects</a>
+        <a href="#blog">Blog</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <section>
+      <h2>Hi, I’m Avinash 👋</h2>
+      <p>
+        I specialize in building <span class="highlight">AI-driven solutions</span> that create real-world impact 
+        across <span class="highlight">agriculture</span>, <span class="highlight">disaster management</span>, 
+        and <span class="highlight">education</span>. With a strong foundation in AI & Data Science, I have led 
+        multiple cross-sector projects at Reliance Foundation.
+      </p>
+      <p>
+        From deploying ML-based crop disease detection systems to digitizing humanitarian handbooks,
+        I enjoy turning complex challenges into simple, impactful solutions.
+      </p>
+      <p>
+        Outside of work, I’m passionate about cricket (played zonal & district levels) and love exploring 
+        innovation, technology, and how AI can transform lives.
+      </p>
+      <p>
+        Let’s connect on <a href="https://www.linkedin.com/in/avinash-gupta-4572a615a/">LinkedIn</a> 
+        or via <a href="mailto:gupta.avinash399@gmail.com">email</a> to discuss AI, strategy, and social impact!
+      </p>
+      <p>Thank you for visiting. I’m excited to explore potential collaborations and new opportunities with you!</p>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+      <h2>🚀 Featured Projects</h2>
+      <div class="project-grid">
+        <div class="project-card">
+          <h3>AI4Disease Detection with NDVI</h3>
+          <p><strong>Tools:</strong> TensorFlow, OpenCV, NDVI, Streamlit, FastAPI, Azure</p>
+          <p>Deployed ML-based diagnostics to improve smallholder farmer advisory systems; engaged rural development teams to integrate solutions in field operations.</p>
+        </div>
+        <div class="project-card">
+          <h3>Disaster Monitoring (Web Scraping Platform)</h3>
+          <p><strong>Tools:</strong> BeautifulSoup, Selenium, MySQL, FastAPI, NLP</p>
+          <p>Built a scalable multilingual data pipeline for real-time disaster alerts; used by internal teams for rapid humanitarian response planning.</p>
+        </div>
+        <div class="project-card">
+          <h3>Sphere Handbook Digitization</h3>
+          <p><strong>Tools:</strong> Transformers, LLMs, ChromaDB</p>
+          <p>Developed an AI-powered chatbot enabling humanitarian workers to access global best practices instantly; positioned as a knowledge platform.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+</body>
+</html>
