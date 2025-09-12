@@ -9,7 +9,7 @@
     header {
       position:fixed; top:0; left:0; right:0;
       background:#fff; padding:20px 40px; border-bottom:1px solid #eee;
-      display:flex; justify-content:center; align-items:center; /* center nav */
+      display:flex; justify-content:flex-end; align-items:center; /* move nav to right */
       z-index:1000;
     }
     nav a { margin:0 10px; text-decoration:none; color:#666; font-weight:500; }
@@ -26,10 +26,11 @@
       height: 150px;
       border-radius: 50%;
       object-fit: cover;
-      object-position: top;  /* focuses on top part of image */
+      object-position: top;
     }
     .sidebar h2 { margin:10px 0 5px; font-size:20px; }
     .sidebar p { margin:5px 0; color:#555; }
+    .links { text-align:left; margin-top:15px; } /* align links to left */
     .links a { display:block; margin:8px 0; text-decoration:none; color:#444; }
     .links a:hover { color:#0077b5; }
 
@@ -62,7 +63,6 @@
     <p>📍 Navi Mumbai, India</p>
     <div class="links">
       <a href="mailto:gupta.avinash399@gmail.com">📧 Email</a>
-      <a href="https://twitter.com/">🐦 Twitter</a>
       <a href="https://www.linkedin.com/in/avinash-gupta-4572a615a/">🔗 LinkedIn</a>
       <a href="https://github.com/your-username">💻 GitHub</a>
     </div>
@@ -71,10 +71,9 @@
   <!-- Main Content -->
   <div class="main-content">
     <header>
-      <!-- Removed h1 Avinash Gupta -->
       <nav>
         <a href="#projects">Projects</a>
-        <a href="#blog">Blog</a>
+        <a href="https://avinash0017.blogspot.com/" target="_blank">Blog</a>
         <a href="#contact">Contact</a>
       </nav>
     </header>
