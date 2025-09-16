@@ -6,7 +6,6 @@
   <title>Avinash Gupta | Portfolio</title>
   <style>
     :root{
-      /* change this to nudge the left text width/align as you like */
       --sidebar-content-width: 210px;
     }
 
@@ -26,7 +25,7 @@
     .sidebar{
       position:fixed; top:70px; left:0; bottom:0;
       width:250px; padding:20px; border-right:1px solid #eee; background:#fff;
-      display:flex; flex-direction:column; align-items:center; /* center image & name */
+      display:flex; flex-direction:column; align-items:center;
     }
     .sidebar img{
       width:150px; height:150px; border-radius:50%;
@@ -34,11 +33,7 @@
     }
     .sidebar h2{ margin:10px 0 6px; font-size:22px; text-align:center; }
 
-    /* Left-align these two blocks with the same width so edges line up */
-    .details, .links{
-      width:var(--sidebar-content-width);
-      text-align:left;
-    }
+    .details, .links{ width:var(--sidebar-content-width); text-align:left; }
     .details p{ margin:5px 0; color:#555; }
     .links{ margin-top:12px; }
     .links a{ display:block; margin:8px 0; text-decoration:none; color:#444; }
@@ -46,7 +41,7 @@
 
     /* Main content */
     .main-content{
-      margin-left:270px; /* space for sidebar */
+      margin-left:270px; 
       padding:100px 40px 40px 40px; max-width:900px;
     }
     .main-content p{ margin-bottom:15px; line-height:1.6; font-size:16px; }
@@ -58,6 +53,22 @@
     .project-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:20px; }
     .project-card{ border:1px solid #ddd; border-radius:8px; padding:20px; background:#fafafa; }
     .project-card h3{ margin-top:0; color:#0077b5; }
+
+    /* Button Style */
+    .btn-link {
+      display:inline-block;
+      margin-top:10px;
+      padding:10px 16px;
+      background:#0077b5;
+      color:#fff;
+      text-decoration:none;
+      border-radius:6px;
+      font-weight:500;
+      transition: background 0.3s ease;
+    }
+    .btn-link:hover {
+      background:#005f87;
+    }
   </style>
 </head>
 <body>
@@ -65,14 +76,10 @@
   <aside class="sidebar">
     <img src="Images/picavi.JPG" alt="Avinash Gupta" />
     <h2>Avinash Gupta</h2>
-
-    <!-- role + location (left-aligned block) -->
     <div class="details">
       <p><strong>AI Product Developer</strong></p>
       <p>📍 Navi Mumbai, India</p>
     </div>
-
-    <!-- links (left-aligned block, same width as details) -->
     <div class="links">
       <a href="mailto:gupta.avinash399@gmail.com">📧 Email</a>
       <a href="https://www.linkedin.com/in/avinash-gupta-4572a615a/">🔗 LinkedIn</a>
@@ -126,6 +133,9 @@
           <h3>Disaster Monitoring (Web Scraping Platform)</h3>
           <p><strong>Tools:</strong> BeautifulSoup, Selenium, MySQL, FastAPI, NLP</p>
           <p>Built a scalable multilingual data pipeline for real-time disaster alerts; used by internal teams for rapid humanitarian response planning.</p>
+          <a class="btn-link" href="http://20.244.144.173:4200/" target="_blank" rel="noopener">
+            🔗 View Disaster Information Portal
+          </a>
         </div>
         <div class="project-card">
           <h3>Sphere Handbook Digitization</h3>
@@ -135,9 +145,7 @@
       </div>
     </section>
 
-    <!-- Contact anchor target -->
     <section id="contact"></section>
   </div>
 </body>
 </html>
-
