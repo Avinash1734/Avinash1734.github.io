@@ -2,152 +2,1329 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Avinash Gupta | Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Avinash Gupta — AI Product Manager building end-to-end AI systems for social impact. Agriculture, disaster response, and rural India." />
+  <meta name="keywords" content="AI Product Manager, Social Impact, Agriculture AI, Disaster Response, Reliance Foundation, Mumbai" />
+  <title>Avinash Gupta — AI Product Manager</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
   <style>
-    :root{
-      --sidebar-content-width: 210px;
+    /* ─── CSS Variables ─────────────────────────────────────── */
+    :root {
+      --bg:         #0D1117;
+      --bg-card:    #161B22;
+      --bg-subtle:  #1C2128;
+      --border:     #30363D;
+      --green:      #3FB950;
+      --green-dim:  #238636;
+      --green-glow: rgba(63, 185, 80, 0.15);
+      --text:       #E6EDF3;
+      --text-muted: #8B949E;
+      --text-dim:   #6E7681;
+      --accent:     #58A6FF;
+      --serif:      'DM Serif Display', Georgia, serif;
+      --sans:       'DM Sans', system-ui, sans-serif;
+      --mono:       'JetBrains Mono', monospace;
     }
 
-    body { font-family: Arial, sans-serif; margin:0; padding:0; color:#333; display:flex; }
+    /* ─── Reset & Base ──────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    /* Top nav (right aligned) */
-    header{
-      position:fixed; top:0; left:0; right:0;
-      background:#fff; padding:20px 40px; border-bottom:1px solid #eee;
-      display:flex; justify-content:flex-end; align-items:center;
-      z-index:1000;
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
     }
-    nav a{ margin:0 10px; text-decoration:none; color:#666; font-weight:500; }
-    nav a:hover{ color:#0077b5; }
 
-    /* Sidebar fixed on extreme left */
-    .sidebar{
-      position:fixed; top:70px; left:0; bottom:0;
-      width:250px; padding:20px; border-right:1px solid #eee; background:#fff;
-      display:flex; flex-direction:column; align-items:center;
+    a { color: var(--green); text-decoration: none; transition: opacity 0.2s; }
+    a:hover { opacity: 0.8; }
+
+    /* ─── Noise texture overlay ─────────────────────────────── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.4;
     }
-    .sidebar img{
-      width:150px; height:150px; border-radius:50%;
-      object-fit:cover; object-position:top; margin-bottom:12px;
+
+    /* ─── Navigation ────────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.25rem 4rem;
+      background: rgba(13, 17, 23, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
     }
-    .sidebar h2{ margin:10px 0 6px; font-size:22px; text-align:center; }
 
-    .details, .links{ width:var(--sidebar-content-width); text-align:left; }
-    .details p{ margin:5px 0; color:#555; }
-    .links{ margin-top:12px; }
-    .links a{ display:block; margin:8px 0; text-decoration:none; color:#444; }
-    .links a:hover{ color:#0077b5; }
-
-    /* Main content */
-    .main-content{
-      margin-left:270px; 
-      padding:100px 40px 40px 40px; max-width:900px;
+    .nav-logo {
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      color: var(--text);
+      letter-spacing: 0.01em;
     }
-    .main-content p{ margin-bottom:15px; line-height:1.6; font-size:16px; }
-    .highlight{ font-weight:bold; color:#0077b5; }
 
-    /* Projects */
-    #projects{ margin-top:40px; }
-    #projects h2{ font-size:26px; margin-bottom:20px; }
-    .project-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:20px; }
-    .project-card{ border:1px solid #ddd; border-radius:8px; padding:20px; background:#fafafa; }
-    .project-card h3{ margin-top:0; color:#0077b5; }
+    .nav-logo span { color: var(--green); }
 
-    /* Button Style */
-    .btn-link {
-      display:inline-block;
-      margin-top:10px;
-      padding:10px 16px;
-      background:#0077b5;
-      color:#fff;
-      text-decoration:none;
-      border-radius:6px;
-      font-weight:500;
-      transition: background 0.3s ease;
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
     }
-    .btn-link:hover {
-      background:#005f87;
+
+    .nav-links a {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--green); opacity: 1; }
+
+    /* ─── Hero ──────────────────────────────────────────────── */
+    #hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 4rem;
+      padding: 8rem 4rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Radial glow behind hero text */
+    #hero::after {
+      content: '';
+      position: absolute;
+      top: 20%; left: -10%;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(63,185,80,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-text { position: relative; z-index: 1; }
+
+    .hero-eyebrow {
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      color: var(--green);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      display: inline-block;
+      width: 2rem;
+      height: 1px;
+      background: var(--green);
+    }
+
+    h1 {
+      font-family: var(--serif);
+      font-size: clamp(2.8rem, 5vw, 4.2rem);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 1.5rem;
+    }
+
+    h1 em {
+      font-style: italic;
+      color: var(--green);
+    }
+
+    .hero-sub {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      line-height: 1.75;
+      max-width: 480px;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 2.5rem;
+      margin-bottom: 2.5rem;
+      padding: 1.5rem 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .stat-item {}
+    .stat-num {
+      font-family: var(--serif);
+      font-size: 2rem;
+      color: var(--text);
+      line-height: 1;
+    }
+    .stat-num span { color: var(--green); }
+    .stat-label {
+      font-size: 0.78rem;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-top: 0.3rem;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.75rem;
+      background: var(--green);
+      color: #0D1117;
+      font-weight: 600;
+      font-size: 0.9rem;
+      border-radius: 6px;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .btn-primary:hover {
+      background: #58D68D;
+      opacity: 1;
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.75rem;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      font-weight: 500;
+      font-size: 0.9rem;
+      border-radius: 6px;
+      transition: border-color 0.2s, color 0.2s, transform 0.15s;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--green);
+      color: var(--green);
+      opacity: 1;
+      transform: translateY(-1px);
+    }
+
+    /* Hero photo */
+    .hero-visual {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .photo-frame {
+      position: relative;
+      width: 380px;
+      height: 480px;
+    }
+
+    .photo-frame::before {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      background: linear-gradient(135deg, var(--green) 0%, transparent 50%, var(--accent) 100%);
+      border-radius: 16px;
+      z-index: 0;
+    }
+
+    .photo-frame img {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      border-radius: 14px;
+      display: block;
+    }
+
+    /* Floating tag on photo */
+    .photo-tag {
+      position: absolute;
+      bottom: -1.5rem;
+      left: -1.5rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0.85rem 1.25rem;
+      z-index: 2;
+      backdrop-filter: blur(8px);
+    }
+
+    .photo-tag-top {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--green);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .photo-tag-bottom {
+      font-size: 0.85rem;
+      color: var(--text);
+      font-weight: 500;
+      margin-top: 0.2rem;
+    }
+
+    /* ─── Section Shared ────────────────────────────────────── */
+    section {
+      padding: 6rem 4rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .section-label {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--green);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .section-label::before {
+      content: '';
+      display: inline-block;
+      width: 1.5rem;
+      height: 1px;
+      background: var(--green);
+    }
+
+    h2 {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 1rem;
+    }
+
+    .section-intro {
+      font-size: 1rem;
+      color: var(--text-muted);
+      max-width: 560px;
+      line-height: 1.75;
+      margin-bottom: 3.5rem;
+    }
+
+    /* ─── About ─────────────────────────────────────────────── */
+    #about { background: var(--bg-subtle); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .about-body {
+      font-size: 1rem;
+      color: var(--text-muted);
+      line-height: 1.85;
+    }
+
+    .about-body p { margin-bottom: 1.25rem; }
+
+    .about-body strong { color: var(--text); font-weight: 500; }
+
+    .about-right {}
+
+    .about-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .about-card-label {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 1rem;
+    }
+
+    .timeline-item {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .timeline-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+    .timeline-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--green);
+      margin-top: 0.45rem;
+      flex-shrink: 0;
+    }
+
+    .timeline-content {}
+    .timeline-role { font-size: 0.9rem; font-weight: 500; color: var(--text); }
+    .timeline-org { font-size: 0.82rem; color: var(--text-muted); }
+    .timeline-year { font-family: var(--mono); font-size: 0.72rem; color: var(--text-dim); margin-top: 0.2rem; }
+
+    /* ─── Projects ──────────────────────────────────────────── */
+    #projects {}
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .project-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.75rem;
+      transition: border-color 0.25s, transform 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--green), transparent);
+      opacity: 0;
+      transition: opacity 0.25s;
+    }
+
+    .project-card:hover {
+      border-color: var(--green-dim);
+      transform: translateY(-3px);
+    }
+
+    .project-card:hover::before { opacity: 1; }
+
+    .project-sector {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      color: var(--green);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.75rem;
+    }
+
+    .project-title {
+      font-family: var(--serif);
+      font-size: 1.2rem;
+      color: var(--text);
+      line-height: 1.3;
+      margin-bottom: 0.75rem;
+    }
+
+    .project-impact {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 1.25rem;
+    }
+
+    .project-impact strong { color: var(--green); font-weight: 500; }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .tag {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      color: var(--text-dim);
+      background: var(--bg-subtle);
+      border: 1px solid var(--border);
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+    }
+
+    /* ─── Impact numbers strip ──────────────────────────────── */
+    #impact {
+      background: var(--bg-subtle);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 4rem;
+    }
+
+    .impact-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      text-align: center;
+    }
+
+    .impact-item {}
+
+    .impact-num {
+      font-family: var(--serif);
+      font-size: 3rem;
+      color: var(--text);
+      line-height: 1;
+    }
+
+    .impact-num span { color: var(--green); }
+
+    .impact-label {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-top: 0.5rem;
+      line-height: 1.5;
+    }
+
+    /* ─── Skills ────────────────────────────────────────────── */
+    #skills {}
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.25rem;
+    }
+
+    .skill-group {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.5rem;
+    }
+
+    .skill-group-label {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--green);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 1rem;
+    }
+
+    .skill-list {
+      list-style: none;
+    }
+
+    .skill-list li {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      padding: 0.35rem 0;
+      border-bottom: 1px solid var(--bg-subtle);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .skill-list li:last-child { border-bottom: none; }
+
+    .skill-list li::before {
+      content: '▸';
+      color: var(--green);
+      font-size: 0.65rem;
+    }
+
+    /* ─── Contact ───────────────────────────────────────────── */
+    #contact {
+      background: var(--bg-subtle);
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+
+    .contact-inner { max-width: 600px; margin: 0 auto; }
+
+    .contact-inner h2 { margin-bottom: 1rem; }
+
+    .contact-inner p {
+      color: var(--text-muted);
+      margin-bottom: 2.5rem;
+      font-size: 1rem;
+    }
+
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.25rem;
+      flex-wrap: wrap;
+    }
+
+    .contact-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.7rem 1.5rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      font-weight: 500;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .contact-link:hover {
+      border-color: var(--green);
+      color: var(--green);
+      opacity: 1;
+    }
+
+    /* ─── Footer ────────────────────────────────────────────── */
+    footer {
+      padding: 2rem 4rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    footer p {
+      font-size: 0.8rem;
+      color: var(--text-dim);
+    }
+
+    /* ─── Awards ────────────────────────────────────────────── */
+    .awards-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .award-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      transition: border-color 0.25s, transform 0.2s;
+    }
+
+    .award-card:hover {
+      border-color: var(--green-dim);
+      transform: translateY(-2px);
+    }
+
+    .award-photo-col {
+      position: relative;
+      overflow: hidden;
+      background: var(--bg-subtle);
+    }
+
+    .award-photo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+
+    .award-card:hover .award-photo { transform: scale(1.03); }
+
+    .award-photo-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      min-height: 260px;
+      background: linear-gradient(135deg, var(--bg-subtle), var(--bg-card));
+    }
+
+    .award-icon-large { font-size: 3.5rem; }
+
+    .award-photo-caption {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      background: linear-gradient(transparent, rgba(13,17,23,0.9));
+      padding: 2rem 1rem 0.85rem;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      text-align: center;
+    }
+
+    .award-photo-placeholder .award-photo-caption {
+      position: static;
+      background: none;
+      padding: 0 1rem;
+      text-align: center;
+    }
+
+    .award-content { padding: 2rem; }
+
+    .award-meta {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.85rem;
+    }
+
+    .award-badge {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      font-weight: 500;
+      padding: 0.25rem 0.75rem;
+      background: var(--green-glow);
+      color: var(--green);
+      border: 1px solid var(--green-dim);
+      border-radius: 20px;
+      letter-spacing: 0.04em;
+    }
+
+    .award-badge-blue {
+      background: rgba(88, 166, 255, 0.1);
+      color: var(--accent);
+      border-color: rgba(88, 166, 255, 0.3);
+    }
+
+    .award-year {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--text-dim);
+    }
+
+    .award-title {
+      font-family: var(--serif);
+      font-size: 1.4rem;
+      color: var(--text);
+      line-height: 1.25;
+      margin-bottom: 0.35rem;
+    }
+
+    .award-org {
+      font-size: 0.82rem;
+      color: var(--text-dim);
+      margin-bottom: 1rem;
+      font-family: var(--mono);
+      letter-spacing: 0.03em;
+    }
+
+    .award-body {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.75;
+    }
+
+    .award-body strong { color: var(--text); font-weight: 500; }
+
+    .award-two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin: 1.25rem 0;
+    }
+
+    .award-sub {
+      background: var(--bg-subtle);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem;
+    }
+
+    .award-sub-title {
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--accent);
+      margin-bottom: 0.4rem;
+      line-height: 1.4;
+    }
+
+    .award-sub-body {
+      font-size: 0.82rem;
+      color: var(--text-dim);
+      line-height: 1.6;
+    }
+
+    .award-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 1.25rem;
+    }
+
+    @media (max-width: 1024px) {
+      .award-card { grid-template-columns: 260px 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      .award-card { grid-template-columns: 1fr; }
+      .award-photo-col { min-height: 220px; }
+      .award-two-col { grid-template-columns: 1fr; }
+    }
+
+    /* ─── Animations ────────────────────────────────────────── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* staggered children */
+    .stagger > * { transition-delay: calc(var(--i, 0) * 0.1s); }
+
+    /* ─── Responsive ────────────────────────────────────────── */
+    @media (max-width: 1024px) {
+      nav { padding: 1.25rem 2rem; }
+      #hero { padding: 8rem 2rem 4rem; gap: 2rem; }
+      section { padding: 5rem 2rem; }
+      #impact { padding: 3rem 2rem; }
+      .about-grid { grid-template-columns: 1fr; }
+      .projects-grid { grid-template-columns: repeat(2, 1fr); }
+      .skills-grid { grid-template-columns: repeat(2, 1fr); }
+      .impact-strip { grid-template-columns: repeat(2, 1fr); }
+      footer { padding: 1.5rem 2rem; }
+    }
+
+    @media (max-width: 768px) {
+      #hero { grid-template-columns: 1fr; }
+      .hero-visual { display: none; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .nav-links { gap: 1.5rem; }
+      .hero-stats { gap: 1.5rem; }
+      .impact-strip { grid-template-columns: repeat(2, 1fr); }
     }
   </style>
 </head>
+
 <body>
-  <!-- Sidebar -->
-  <aside class="sidebar">
-    <img src="Images/picavi.JPG" alt="Avinash Gupta" />
-    <h2>Avinash Gupta</h2>
-    <div class="details">
-      <p><strong>AI Product Developer</strong></p>
-      <p>📍 Navi Mumbai, India</p>
-    </div>
-    <div class="links">
-      <a href="mailto:gupta.avinash399@gmail.com">📧 Email</a>
-      <a href="https://www.linkedin.com/in/avinash-gupta-4572a615a/">🔗 LinkedIn</a>
-      <a href="https://github.com/Avinash1734">💻 GitHub</a>
-    </div>
-  </aside>
 
-  <!-- Main Content -->
-  <div class="main-content">
-    <header>
-      <nav>
-        <a href="#projects">Projects</a>
-        <a href="https://avinash0017.blogspot.com/" target="_blank" rel="noopener">Blog</a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </header>
+  <!-- ─── Navigation ─────────────────────────────────────── -->
+  <nav>
+    <div class="nav-logo">Avinash<span>.</span></div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Work</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#awards">Awards</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
 
-    <section>
-      <p>Hi, I’m Avinash 👋</p>
-      <p>
-        I specialize in building <span class="highlight">AI-driven solutions</span> that create real-world impact
-        across <span class="highlight">agriculture</span>, <span class="highlight">disaster management</span>,
-        and <span class="highlight">education</span>. With a strong foundation in AI & Data Science, I have led
-        multiple cross-sector projects at Reliance Foundation.
-      </p>
-      <p>
-        From deploying ML-based crop disease detection systems to digitizing humanitarian handbooks,
-        I enjoy turning complex challenges into simple, impactful solutions.
-      </p>
-      <p>
-        Outside of work, I’m passionate about cricket (played zonal & district levels) and love exploring
-        innovation, technology, and how AI can transform lives.
-      </p>
-      <p>
-        Let’s connect on <a href="https://www.linkedin.com/in/avinash-gupta-4572a615a/">LinkedIn</a>
-        or via <a href="mailto:gupta.avinash399@gmail.com">email</a> to discuss AI, strategy, and social impact!
-      </p>
-      <p>Thank you for visiting. I’m excited to explore potential collaborations and new opportunities with you!</p>
-    </section>
+  <!-- ─── Hero ───────────────────────────────────────────── -->
+  <section id="hero">
 
-    <!-- Projects -->
-    <section id="projects">
-      <h2>🚀 Featured Projects</h2>
-      <div class="project-grid">
-        <div class="project-card">
-          <h3>AI4Disease Detection with NDVI</h3>
-          <p><strong>Tools:</strong> TensorFlow, OpenCV, NDVI, Streamlit, FastAPI, Azure</p>
-          <p>Deployed ML-based diagnostics to improve smallholder farmer advisory systems; engaged rural development teams to integrate solutions in field operations.</p>
+    <div class="hero-text fade-up">
+      <div class="hero-eyebrow">AI Product Manager</div>
+
+      <h1>Building AI that works<br><em>at the last mile.</em></h1>
+
+      <p class="hero-sub">
+        I define product strategy, align stakeholders, and personally ship
+        the ML systems behind it — across agriculture, disaster response,
+        and rural India.
+      </p>
+
+      <div class="hero-stats stagger">
+        <div class="stat-item" style="--i:0">
+          <div class="stat-num">30<span>L+</span></div>
+          <div class="stat-label">Farmers & communities reached</div>
         </div>
-        <div class="project-card">
-          <h3>Disaster Monitoring (Web Scraping Platform)</h3>
-          <p><strong>Tools:</strong> BeautifulSoup, Selenium, MySQL, FastAPI, NLP</p>
-          <p>Built a scalable multilingual data pipeline for real-time disaster alerts; used by internal teams for rapid humanitarian response planning.(Website developement is under progress).</p>
-          <a class="btn-link" href="http://20.244.144.173:4200/" target="_blank" rel="noopener">
-            🔗 View Disaster Information Portal
-          </a>
+        <div class="stat-item" style="--i:1">
+          <div class="stat-num">5<span>+</span></div>
+          <div class="stat-label">AI products shipped</div>
         </div>
-        <div class="project-card">
-          <h3>Sphere Handbook Digitization</h3>
-          <p><strong>Tools:</strong> Transformers, LLMs, ChromaDB</p>
-          <p>Developed an AI-powered chatbot enabling humanitarian workers to access global best practices instantly; positioned as a knowledge platform.</p>
+        <div class="stat-item" style="--i:2">
+          <div class="stat-num">70<span>%</span></div>
+          <div class="stat-label">Manual work eliminated</div>
         </div>
       </div>
-    </section>
 
-    <section id="contact"></section>
+      <div class="hero-cta">
+        <a href="#projects" class="btn-primary">View My Work →</a>
+        <a href="mailto:gupta.avinash399@gmail.com" class="btn-secondary">Get in Touch</a>
+      </div>
+    </div>
+
+    <div class="hero-visual fade-up" style="transition-delay: 0.2s">
+      <div class="photo-frame">
+        <img src="Avipersonal.jpeg" alt="Avinash Gupta at AI Impact Summit" />
+        <div class="photo-tag">
+          <div class="photo-tag-top">Currently at</div>
+          <div class="photo-tag-bottom">Reliance Foundation, Mumbai</div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ─── About ──────────────────────────────────────────── -->
+  <section id="about">
+    <div class="section-label">About</div>
+    <div class="about-grid">
+
+      <div>
+        <h2>PM who ships.<br><em>Not just plans.</em></h2>
+        <div class="about-body fade-up">
+          <p>
+            At Reliance Foundation, I own products end-to-end — from defining requirements
+            and aligning government and NGO stakeholders, to personally shipping the ML pipelines,
+            APIs, and interfaces behind them. No handoff between PM and engineering. I do both.
+          </p>
+          <p>
+            This lets me move fast in resource-constrained environments where a 50-page PRD
+            is less useful than a <strong>working prototype in the field.</strong>
+          </p>
+          <p>
+            Before AI product work, I spent six months doing cricket performance analytics at
+            <strong>Mumbai Indians</strong>, three years preparing for <strong>UPSC</strong>
+            (which gave me policy thinking and ground-level understanding of how India works),
+            and time as a journalist at <strong>Times of India</strong>.
+          </p>
+          <p>
+            I'm looking for AI PM roles at organisations where technology is a means to
+            measurable human outcomes — social impact orgs, international development
+            institutions, and AI-first teams in emerging markets.
+          </p>
+        </div>
+      </div>
+
+      <div class="about-right fade-up" style="transition-delay: 0.15s">
+
+        <div class="about-card">
+          <div class="about-card-label">Experience</div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <div class="timeline-role">AI Product Developer</div>
+              <div class="timeline-org">Reliance Foundation</div>
+              <div class="timeline-year">Jun 2023 — Present</div>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot" style="background: var(--text-dim)"></div>
+            <div class="timeline-content">
+              <div class="timeline-role">Data Science Intern</div>
+              <div class="timeline-org">Mumbai Indians · Jio Sports Analytics</div>
+              <div class="timeline-year">Dec 2022 — May 2023</div>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot" style="background: var(--text-dim)"></div>
+            <div class="timeline-content">
+              <div class="timeline-role">Industrial Engineer</div>
+              <div class="timeline-org">Caresoft Global Pvt Ltd</div>
+              <div class="timeline-year">Feb 2019 — Feb 2021</div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="about-card">
+          <div class="about-card-label">Education</div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <div class="timeline-role">PGP — AI & Data Science</div>
+              <div class="timeline-org">Jio Institute + NTU Singapore</div>
+              <div class="timeline-year">Graduated 2023</div>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot" style="background: var(--text-dim)"></div>
+            <div class="timeline-content">
+              <div class="timeline-role">B.Tech — Industrial Engineering</div>
+              <div class="timeline-org">RKNEC Nagpur University</div>
+              <div class="timeline-year">Graduated 2018</div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Impact Strip ───────────────────────────────────── -->
+  <div id="impact">
+    <div class="impact-strip stagger">
+      <div class="impact-item fade-up" style="--i:0">
+        <div class="impact-num">30<span>L+</span></div>
+        <div class="impact-label">Farmers & communities<br>reached via AI systems</div>
+      </div>
+      <div class="impact-item fade-up" style="--i:1">
+        <div class="impact-num">50<span>L+</span></div>
+        <div class="impact-label">Crowd events monitored<br>at Kumbh Mela & Rath Yatra</div>
+      </div>
+      <div class="impact-item fade-up" style="--i:2">
+        <div class="impact-num">3–4<span>L</span></div>
+        <div class="impact-label">Scholarship applicants<br>via DigiLocker integration</div>
+      </div>
+      <div class="impact-item fade-up" style="--i:3">
+        <div class="impact-num">70<span>%</span></div>
+        <div class="impact-label">Reduction in manual<br>humanitarian data collection</div>
+      </div>
+    </div>
   </div>
+
+  <!-- ─── Projects ───────────────────────────────────────── -->
+  <section id="projects">
+    <div class="section-label">Featured Work</div>
+    <h2>Products I've shipped.</h2>
+    <p class="section-intro">
+      End-to-end AI systems built for real users — farmers, humanitarian workers,
+      scholarship applicants, and field teams across India.
+    </p>
+
+    <div class="projects-grid">
+
+      <!-- Project 1 -->
+      <div class="project-card fade-up" style="--i:0">
+        <div class="project-sector">Agriculture · Computer Vision</div>
+        <div class="project-title">Crop Disease Detection System</div>
+        <div class="project-impact">
+          ML-based diagnostics to detect leaf diseases in paddy crops, enabling
+          <strong>timely farmer advisories</strong> via RF's field network.
+          Piloted in Maharashtra with rural development teams.
+        </div>
+        <div class="project-tags">
+          <span class="tag">TensorFlow</span>
+          <span class="tag">MobileNet</span>
+          <span class="tag">FastAPI</span>
+          <span class="tag">Streamlit</span>
+          <span class="tag">Azure</span>
+        </div>
+      </div>
+
+      <!-- Project 2 -->
+      <div class="project-card fade-up" style="--i:1">
+        <div class="project-sector">Disaster Response · NLP</div>
+        <div class="project-title">Disaster Monitoring Platform</div>
+        <div class="project-impact">
+          Automated multilingual data pipeline for real-time disaster alerts.
+          <strong>Reduced manual data collection by 70%</strong>, enabling
+          faster humanitarian response across India.
+        </div>
+        <div class="project-tags">
+          <span class="tag">BeautifulSoup</span>
+          <span class="tag">Selenium</span>
+          <span class="tag">MySQL</span>
+          <span class="tag">FastAPI</span>
+          <span class="tag">NLP</span>
+        </div>
+      </div>
+
+      <!-- Project 3 -->
+      <div class="project-card fade-up" style="--i:2">
+        <div class="project-sector">Humanitarian · RAG</div>
+        <div class="project-title">Sphere Handbook Chatbot</div>
+        <div class="project-impact">
+          AI-powered chatbot giving humanitarian field workers
+          <strong>instant access to best practices</strong>.
+          Supports both online and offline deployment modes.
+        </div>
+        <div class="project-tags">
+          <span class="tag">LLMs</span>
+          <span class="tag">ChromaDB</span>
+          <span class="tag">RAG</span>
+          <span class="tag">Transformers</span>
+        </div>
+      </div>
+
+      <!-- Project 4 -->
+      <div class="project-card fade-up" style="--i:3">
+        <div class="project-sector">Public Safety · Computer Vision</div>
+        <div class="project-title">AI Crowd Monitoring</div>
+        <div class="project-impact">
+          Real-time footfall analysis for Kumbh Mela and Rath Yatra.
+          <strong>50L+ crowd events monitored</strong>, coordinated with
+          local authorities for live deployment.
+        </div>
+        <div class="project-tags">
+          <span class="tag">YOLOv8</span>
+          <span class="tag">DeepSORT</span>
+          <span class="tag">OpenCV</span>
+          <span class="tag">Azure</span>
+        </div>
+      </div>
+
+      <!-- Project 5 -->
+      <div class="project-card fade-up" style="--i:4">
+        <div class="project-sector">Education · Product</div>
+        <div class="project-title">DigiLocker Scholarship Platform</div>
+        <div class="project-impact">
+          Defined API architecture and auth workflows for RF Scholarship Platform.
+          <strong>3–4 lakh applicants</strong> served through seamless
+          DigiLocker integration.
+        </div>
+        <div class="project-tags">
+          <span class="tag">DigiLocker API</span>
+          <span class="tag">FastAPI</span>
+          <span class="tag">Product Design</span>
+        </div>
+      </div>
+
+      <!-- Project 6 -->
+      <div class="project-card fade-up" style="--i:5">
+        <div class="project-sector">Sports Analytics · CV</div>
+        <div class="project-title">Cricket Performance Analytics</div>
+        <div class="project-impact">
+          Player analysis system at Mumbai Indians using computer vision.
+          <strong>Automated video tagging</strong> reduced manual analysis
+          time significantly for the analytics team.
+        </div>
+        <div class="project-tags">
+          <span class="tag">Computer Vision</span>
+          <span class="tag">Python</span>
+          <span class="tag">Video Analytics</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─── Skills ─────────────────────────────────────────── -->
+  <section id="skills" style="background: var(--bg-subtle); border-top: 1px solid var(--border);">
+    <div class="section-label">Capabilities</div>
+    <h2>What I bring.</h2>
+    <p class="section-intro">Product thinking backed by hands-on technical depth.</p>
+
+    <div class="skills-grid">
+
+      <div class="skill-group fade-up">
+        <div class="skill-group-label">Product</div>
+        <ul class="skill-list">
+          <li>Product Strategy & Roadmapping</li>
+          <li>Stakeholder Management</li>
+          <li>User Research & Field Testing</li>
+          <li>API Architecture Design</li>
+          <li>Cross-functional Leadership</li>
+        </ul>
+      </div>
+
+      <div class="skill-group fade-up" style="transition-delay: 0.1s">
+        <div class="skill-group-label">AI & ML</div>
+        <ul class="skill-list">
+          <li>Machine Learning (TensorFlow)</li>
+          <li>Computer Vision (YOLO, OpenCV)</li>
+          <li>NLP & LLMs</li>
+          <li>RAG Systems</li>
+          <li>Agentic AI</li>
+        </ul>
+      </div>
+
+      <div class="skill-group fade-up" style="transition-delay: 0.2s">
+        <div class="skill-group-label">Engineering</div>
+        <ul class="skill-list">
+          <li>Python</li>
+          <li>FastAPI & Flask</li>
+          <li>Streamlit</li>
+          <li>MySQL & ChromaDB</li>
+          <li>Azure Deployment</li>
+        </ul>
+      </div>
+
+      <div class="skill-group fade-up" style="transition-delay: 0.3s">
+        <div class="skill-group-label">Data & Analytics</div>
+        <ul class="skill-list">
+          <li>Power BI & Tableau</li>
+          <li>Web Scraping (BS4, Selenium)</li>
+          <li>Data Visualisation</li>
+          <li>Predictive Analytics</li>
+          <li>SQL</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─── Awards & Recognition ─────────────────────────── -->
+  <section id="awards" style="background: var(--bg); border-top: 1px solid var(--border);">
+    <div class="section-label">Recognition</div>
+    <h2>Awards & achievements.</h2>
+    <p class="section-intro">
+      As part of the core product team at Reliance Foundation, I led technical implementation
+      of key modules — disaster monitoring, crop disease detection, and multilingual advisory
+      systems — that formed the backbone of these award-winning platforms.
+    </p>
+
+    <div class="awards-grid">
+
+      <!-- Award 1 — TechMahaImpacT -->
+      <div class="award-card fade-up">
+        <div class="award-photo-col">
+          <img src="award.jpeg" alt="Avinash at TechMahaImpacT Forum 2026 award ceremony" class="award-photo" />
+          <div class="award-photo-caption">TechMahaImpacT Forum 2026 · Mumbai, Maharashtra</div>
+        </div>
+        <div class="award-content">
+          <div class="award-meta">
+            <span class="award-badge">🏆 Sole Recipient</span>
+            <span class="award-year">May 2026</span>
+          </div>
+          <div class="award-title">CSR-Tech Integration Award</div>
+          <div class="award-org">TechMahaImpacT Forum 2026 · MahaIT &amp; Elets Technomedia</div>
+          <div class="award-body">
+            Reliance Foundation was the <strong>sole organisation recognised</strong> under the
+            CSR-Tech Integration Award category at Maharashtra's premier CSR &amp; Technology
+            Conclave — inaugurated by the Hon'ble Chief Minister of Maharashtra, Shri Devendra
+            Fadnavis, alongside senior Government of Maharashtra officials.
+          </div>
+          <div class="award-body" style="margin-top: 0.75rem;">
+            The award recognised the Community Intelligence Platform's use of AI, GeoAI, GIS,
+            multilingual channels, and real-time advisory services to deliver last-mile impact
+            across agriculture, disaster resilience, fisheries, and rural livelihoods.
+          </div>
+          <div class="award-tags">
+            <span class="tag">AI</span>
+            <span class="tag">GeoAI</span>
+            <span class="tag">Disaster Resilience</span>
+            <span class="tag">Agriculture</span>
+            <span class="tag">Maharashtra Government</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Award 2 — ICC Technology Excellence -->
+      <div class="award-card fade-up" style="transition-delay: 0.15s;">
+        <div class="award-photo-col award-photo-placeholder">
+          <div class="award-icon-large">🏅</div>
+          <div class="award-photo-caption">ICC World Technology Convention 2026<br>Jio World Convention Centre, Mumbai</div>
+        </div>
+        <div class="award-content">
+          <div class="award-meta">
+            <span class="award-badge award-badge-blue">2× Awards</span>
+            <span class="award-year">May 2026</span>
+          </div>
+          <div class="award-title">ICC Technology Excellence Awards 2026</div>
+          <div class="award-org">Indian Chamber of Commerce · ICC World Technology Convention</div>
+          <div class="award-body">
+            Reliance Foundation received two recognitions from a Grand Jury panel including
+            <strong>Mission Director of Atal Innovation Mission, NITI Aayog</strong> and
+            senior leaders from governance, technology, and industry ecosystems.
+          </div>
+          <div class="award-two-col">
+            <div class="award-sub">
+              <div class="award-sub-title">Emerging Technology Adoption</div>
+              <div class="award-sub-body">For scaling AI, GeoAI, cloud infrastructure, GIS,
+              and digital advisory tools to strengthen last-mile service delivery.</div>
+            </div>
+            <div class="award-sub">
+              <div class="award-sub-title">Innovation Catalyst — Special Appreciation</div>
+              <div class="award-sub-body">For the field-driven innovation model converting
+              grassroots needs into scalable, multilingual, community-centric solutions.</div>
+            </div>
+          </div>
+          <div class="award-tags">
+            <span class="tag">NITI Aayog Jury</span>
+            <span class="tag">Tech for Social Good</span>
+            <span class="tag">Innovation</span>
+            <span class="tag">Last-mile Delivery</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─── Contact ────────────────────────────────────────── -->
+  <section id="contact">
+    <div class="contact-inner">
+      <div class="section-label" style="justify-content: center;">Let's Talk</div>
+      <h2>Open to the right opportunity.</h2>
+      <p>
+        Looking for AI PM roles in social impact, international development,
+        and AI-first teams — India and remote globally.
+      </p>
+      <div class="contact-links">
+        <a href="mailto:gupta.avinash399@gmail.com" class="contact-link">
+          ✉ gupta.avinash399@gmail.com
+        </a>
+        <a href="https://linkedin.com/in/avinash-gupta" target="_blank" class="contact-link">
+          ↗ LinkedIn
+        </a>
+        <a href="https://github.com/avinash1734" target="_blank" class="contact-link">
+          ↗ GitHub
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Footer ─────────────────────────────────────────── -->
+  <footer>
+    <p>© 2026 Avinash Gupta · Mumbai, India</p>
+    <p>Built with intention.</p>
+  </footer>
+
+  <!-- ─── Scroll animations ──────────────────────────────── -->
+  <script>
+    // Intersection Observer for fade-up animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(el => {
+        if (el.isIntersecting) {
+          el.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    // Trigger hero fade immediately
+    document.querySelectorAll('#hero .fade-up').forEach(el => {
+      setTimeout(() => el.classList.add('visible'), 100);
+    });
+
+    // Active nav link on scroll
+    const sections = document.querySelectorAll('section[id], div[id]');
+    const navLinks = document.querySelectorAll('.nav-links a');
+
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(sec => {
+        if (window.scrollY >= sec.offsetTop - 120) current = sec.id;
+      });
+      navLinks.forEach(link => {
+        link.style.color = link.getAttribute('href') === `#${current}`
+          ? 'var(--green)' : '';
+      });
+    });
+  </script>
+
 </body>
 </html>
-
-
